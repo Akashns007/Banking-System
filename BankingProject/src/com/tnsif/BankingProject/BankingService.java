@@ -23,4 +23,5 @@ public interface BankingService {
     List<Account> getAccountsByCustomerId(int customerId);
     List<Transaction> getTransactionsByAccountId(int accountId);
     List<Beneficiary> getBeneficiariesByCustomerId(int customerId);
+    
 }
