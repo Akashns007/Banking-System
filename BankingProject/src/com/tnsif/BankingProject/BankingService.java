@@ -24,4 +24,9 @@ public interface BankingService {
     List<Transaction> getTransactionsByAccountId(int accountId);
     List<Beneficiary> getBeneficiariesByCustomerId(int customerId);
     
+    
+    boolean accountValidation(int customerID);
+    boolean transactionValidation(int accountID);
+    boolean beneficiaryValidation(int customerID);
+    
 }

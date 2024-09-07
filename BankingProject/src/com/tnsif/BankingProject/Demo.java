@@ -26,7 +26,8 @@ public class Demo {
             System.out.print("Enter your choice: ");
             int choice = scanner.nextInt();
             scanner.nextLine(); // Consume newline
-
+            System.out.println();
+            
             switch (choice) {
                 case 1:
                     addCustomer();
@@ -79,6 +80,12 @@ public class Demo {
     private static void addAccount() {
     	System.out.print("Enter Customer ID: ");
         int customerID = scanner.nextInt();
+        
+        //validate customerID
+        if (! bankingService.accountValidation(customerID)) {
+        	return;
+        }
+        
         System.out.print("Enter Account ID: ");
         int accountID = scanner.nextInt();
         scanner.nextLine(); // Consume newline
@@ -96,6 +103,12 @@ public class Demo {
         int beneficiaryID = scanner.nextInt();
         System.out.print("Enter Customer ID: ");
         int customerID = scanner.nextInt();
+        
+        //customerID validation for beneficiary
+        if (! bankingService.accountValidation(customerID)) {
+        	return;
+        }
+        
         scanner.nextLine(); // Consume newline
         System.out.print("Enter Name: ");
         String name = scanner.nextLine();
@@ -104,17 +117,24 @@ public class Demo {
         System.out.print("Enter Bank Details: ");
         String bankDetails = scanner.nextLine();
         Beneficiary beneficiary = new Beneficiary(beneficiaryID, customerID, name, accountNumber, bankDetails);
-        bankingService.addBeneficiary(beneficiary);
+        //beneficiary
+        bankingService.addBeneficiary(beneficiary); //bankingservice for adding beneficiary
         System.out.println("Beneficiary added successfully.");
     }
 
     private static void addTransaction() {
         int transactionID = 0;
         transactionID = transactionID + 1;
+        //random number for tansactionID
         
         System.out.print("Enter Account ID: ");
         int accountID = scanner.nextInt();
         scanner.nextLine(); // Consume newline
+        
+        //validating
+        if (! bankingService.transactionValidation(accountID)) {
+        	return;
+        }
         
         System.out.print("Enter Transaction Type (deposit/withdraw): ");
         String type = scanner.nextLine();
@@ -122,6 +142,7 @@ public class Demo {
         System.out.print("Enter Amount: ");
         double amount = scanner.nextDouble();
         
+        //format time stamp
         LocalDateTime timestamp = LocalDateTime.now();
         Transaction transaction = new Transaction(transactionID, accountID, type, amount, timestamp);
         bankingService.addTransaction(transaction);
@@ -155,6 +176,12 @@ public class Demo {
     private static void listTransactionsByAccountId() {
         System.out.print("Enter Account ID: ");
         int accountID = scanner.nextInt();
+        
+        //validating the accountID
+        if (! bankingService.transactionValidation(accountID)) {
+        	return;
+        }
+        
         List<Transaction> transactions = bankingService.getTransactionsByAccountId(accountID);
         if (!transactions.isEmpty()) {
             for (Transaction transaction : transactions) {
@@ -168,6 +195,12 @@ public class Demo {
     private static void listBeneficiariesByCustomerId() {
         System.out.print("Enter Customer ID: ");
         int customerID = scanner.nextInt();
+        
+        //validating customerID
+        if (! bankingService.accountValidation(customerID)) {
+        	return;
+        }
+        
         List<Beneficiary> beneficiaries = bankingService.getBeneficiariesByCustomerId(customerID);
         if (!beneficiaries.isEmpty()) {
             for (Beneficiary beneficiary : beneficiaries) {

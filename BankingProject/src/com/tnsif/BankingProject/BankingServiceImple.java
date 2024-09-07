@@ -26,6 +26,7 @@ public class BankingServiceImple implements BankingService {
         // add transaction to transactions map, key - transactionID
         // and based on transaction type (deposit or withdraw) update the account balance
         transactions.put(transaction.getTransactionID(), transaction);
+        
         Account account = accounts.get(transaction.getAccountID());
         if (transaction.getType().equals("deposit")) {
             account.setBalance(account.getBalance() + transaction.getAmount());
@@ -59,6 +60,12 @@ public class BankingServiceImple implements BankingService {
     public Beneficiary findBeneficiaryById(int id) {
         return beneficiaries.get(id);
     }
+    
+    
+    
+    
+    
+    //list of all the values
 
     @Override
     public List<Account> getAccountsByCustomerId(int customerId) {
@@ -92,7 +99,12 @@ public class BankingServiceImple implements BankingService {
         }
         return result;
     }
-
+    
+    
+    
+    
+    
+    //for getting all details
     @Override
     public Collection<Account> getAllAccounts() {
         return accounts.values();
@@ -112,5 +124,45 @@ public class BankingServiceImple implements BankingService {
     public Collection<Beneficiary> getAllBeneficiaries() {
         return beneficiaries.values();
     }
+    
+    
+    
+    
+    
+    
+    // for validations
+	@Override
+	public boolean transactionValidation(int accountID) {
+		// TODO Auto-generated method stub
+		Account account = findAccountById(accountID);
+        if (account == null) {
+            System.out.println("Account not found for ID: " + accountID);
+            return false;
+        }
+		return true;
+		
+	}
+
+	@Override
+	public boolean accountValidation(int customerID) {
+		// TODO Auto-generated method stub
+		Customer customer = findCustomerById(customerID);
+        if (customer == null) {
+            System.out.println("The CustomerID "+customerID+" does not exist. Please add the Customer details first!");
+            return false;
+        }
+		return true;
+	}
+
+	@Override
+	public boolean beneficiaryValidation(int customerID) {
+		// TODO Auto-generated method stub
+		Customer customer = findCustomerById(customerID);
+        if (customer == null) {
+            System.out.println("The CustomerID "+customerID+" does not exist!");
+            return false;
+        }
+		return true;
+	}
 }
 
