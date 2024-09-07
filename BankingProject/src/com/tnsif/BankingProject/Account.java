@@ -1,6 +1,6 @@
 package com.tnsif.BankingProject;
 
-public class Account {
+public class Account  {
     private int accountID;
     private int customerID;
     private String type;

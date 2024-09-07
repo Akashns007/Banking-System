@@ -10,11 +10,14 @@ public class Transaction {
 	private LocalDateTime timestamp;
 	
 	
-	public Transaction(int accountID, String type, double amount) {
+	
+	public Transaction(int transactionID, int accountID, String type, double amount, LocalDateTime timestamp) {
 		super();
+		this.transactionID = transactionID;
 		this.accountID = accountID;
 		this.type = type;
 		this.amount = amount;
+		this.timestamp = timestamp;
 	}
 
 
