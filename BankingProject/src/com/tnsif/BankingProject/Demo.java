@@ -1,14 +1,17 @@
 package com.tnsif.BankingProject;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Scanner;
 
+import org.junit.jupiter.api.Test;
+
 public class Demo {
     private static BankingService bankingService = new BankingServiceImple();
     private static Scanner scanner = new Scanner(System.in);
-
     public static void main(String[] args) {
         while (true) {
         	System.out.println("\n");
@@ -27,6 +30,8 @@ public class Demo {
             int choice = scanner.nextInt();
             scanner.nextLine(); // Consume newline
             System.out.println();
+            
+            
             
             switch (choice) {
                 case 1:
@@ -61,6 +66,7 @@ public class Demo {
             }
         }
     }
+    
 
     private static void addCustomer() {
         System.out.print("Enter Customer ID: ");
@@ -82,6 +88,7 @@ public class Demo {
         int customerID = scanner.nextInt();
         
         //validate customerID
+//        assertFalse(bankingService.accountValidation(customerID));
         if (! bankingService.accountValidation(customerID)) {
         	return;
         }
@@ -113,7 +120,7 @@ public class Demo {
         System.out.print("Enter Name: ");
         String name = scanner.nextLine();
         System.out.print("Enter Account Number: ");
-        String accountNumber = scanner.nextLine();
+        int accountNumber = scanner.nextInt();
         System.out.print("Enter Bank Details: ");
         String bankDetails = scanner.nextLine();
         Beneficiary beneficiary = new Beneficiary(beneficiaryID, customerID, name, accountNumber, bankDetails);

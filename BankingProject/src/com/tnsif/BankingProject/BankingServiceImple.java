@@ -1,6 +1,13 @@
 package com.tnsif.BankingProject;
 
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+
 import java.util.*;
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.provider.ValueSource;
 
 public class BankingServiceImple implements BankingService {
     private Map<Integer, Customer> customers = new HashMap<>();
@@ -144,9 +151,12 @@ public class BankingServiceImple implements BankingService {
 	}
 
 	@Override
+	@Test
+	@ValueSource(ints = {123})
 	public boolean accountValidation(int customerID) {
 		// TODO Auto-generated method stub
 		Customer customer = findCustomerById(customerID);
+		assertEquals(customer,null);
         if (customer == null) {
             System.out.println("The CustomerID "+customerID+" does not exist. Please add the Customer details first!");
             return false;

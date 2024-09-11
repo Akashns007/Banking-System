@@ -5,11 +5,11 @@ public class Beneficiary {
     private int beneficiaryID;
     private int customerID;
     private String name;
-    private String accountNumber;
+    private int accountNumber;
     private String bankDetails;
 
     // Constructor
-    public Beneficiary(int beneficiaryID, int customerID, String name, String accountNumber, String bankDetails) {
+    public Beneficiary(int beneficiaryID, int customerID, String name, int accountNumber, String bankDetails) {
         this.beneficiaryID = beneficiaryID;
         this.customerID = customerID;
         this.name = name;
@@ -42,11 +42,11 @@ public class Beneficiary {
         this.name = name;
     }
 
-    public String getAccountNumber() {
+    public int getAccountNumber() {
         return accountNumber;
     }
 
-    public void setAccountNumber(String accountNumber) {
+    public void setAccountNumber(int accountNumber) {
         this.accountNumber = accountNumber;
     }
 
